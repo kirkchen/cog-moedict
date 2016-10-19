@@ -1,0 +1,26 @@
+---
+cog_bundle_version: 4
+name: moedict
+description: Interact with Moedict API
+author: Kirk Chen <rwk0119@yahoo.com.tw> 
+homepage: https://github.com/kirkchen/cog-moedict
+version: 0.0.8
+docker:
+  image: kirkchen/cog-moedict
+  tag: 0.0.8
+permissions:
+  - moedict:image 
+commands:
+  image:
+    executable: /home/bundle/cog-command
+    description: Retrieve information about given chinese words
+    arguments: "[words]"
+    rules:
+      - 'when command is moedict:image must have moedict:image'
+templates:
+  image:
+    body: |
+      ~each var=$results as=task~
+      ~attachment image_url=$task.image~
+      ~end~
+      ~end~
